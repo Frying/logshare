@@ -1,7 +1,7 @@
 import templates
 
 proc linkBuilder*(hash:string):string =
-  return """Log telah berhasil disimpan. Silahkan buka melalui <a href="http://127.0.0.1:8090/get/""" & hash & """">link ini.</a>"""
+  return """Data have been saved. Open it by <a href="http://127.0.0.1:8090/get/""" & hash & """">click this link.</a>"""
 
 proc logForm*: string = tmpli html"""
   <form action="/save-log" method="POST" enctype="application/json">
@@ -32,7 +32,12 @@ proc logForm*: string = tmpli html"""
 
 proc viewDetail*(data:array[5,string]): string =
   var c = """
-    <table border="1" width="80%" align="center">
+    <table align="center">
+      <tr>
+        <td width="7%">Created by</td>
+        <td width="1%">:</td>
+        <td width="92%">""" & $data[2] & """</td>
+      </tr>
       <tr>
         <td>Subject</td>
         <td>:</td>

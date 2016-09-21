@@ -12,8 +12,7 @@ routes:
   post "/save-log":
     var sbj = @"subject"
     var rpt = @"reporter"
-#    var dte = format(getLocalTime(getTime()), "d MMMM yyyy HH:mm")
-    var dte = format(getLocalTime(getTime()), "yyyy-MM-dd")
+    var dte = format(getLocalTime(getTime()), "yyyy-MM-dd HH:mm:ss")
     var dtl = @"detail"
     var hashing = encode(getClockStr())
 
