@@ -10,14 +10,17 @@ routes:
     resp views.logForm()
 
   post "/save-log":
-    var sbj = @"subject"
-    var rpt = @"reporter"
+    var sbj = @"subject".strip()
+    var rpt = @"reporter".strip()
     var dte = format(getLocalTime(getTime()), "yyyy-MM-dd HH:mm:ss")
     var dtl = @"detail"
     var hashing = encode(getClockStr())
 
-    add(hashing, sbj, rpt, dte, dtl)
-    resp linkBuilder(hashing)
+    if len(sbj) > 0 and len(rpt) > 0 and len(dtl.strip()) > 0:
+      add(hashing, sbj.strip(), rpt.strip(), dte, dtl)
+      resp linkBuilder(hashing)
+    else:
+      resp """Incomplete information. Please <a href="http://logshare.digakusite.com">try again.</a>"""
 
   get "/get/@id":
     var data_string: array[5, string]
